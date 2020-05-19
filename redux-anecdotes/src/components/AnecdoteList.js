@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { voteAnecdote } from "../reducers/anecdoteReducer";
 import {
@@ -6,9 +6,12 @@ import {
   resetNotification,
 } from "../reducers/notificationReducer";
 import { filterAnecdotes } from "../reducers/filterReducer";
+import { getAllService } from "../services/anecdotes";
+import { initializeAnecdotes } from "../reducers/anecdoteReducer";
 
 function AnecdoteList() {
   const dispatch = useDispatch();
+
   const anecdotes = useSelector((state) => {
     return state.filter === "ALL"
       ? state.anecdotes
@@ -32,6 +35,16 @@ function AnecdoteList() {
     e.preventDefault();
     dispatch(filterAnecdotes(e.target.value));
   };
+
+  useEffect(() => {
+    getAllService()
+    .then(anecdotes => {
+      dispatch(initializeAnecdotes(anecdotes.data))
+    })
+    .catch(err => {
+      console.error(err.message)
+    });
+  }, [dispatch]);
 
   return (
     <>
