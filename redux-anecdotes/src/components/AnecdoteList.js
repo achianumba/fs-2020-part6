@@ -1,13 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { voteAnecdote } from "../reducers/anecdoteReducer";
-import {
-  voteNotification,
-  resetNotification,
-} from "../reducers/notificationReducer";
+import { voteAnecdote, initializeAnecdotes } from "../reducers/anecdoteReducer";
+import { voteNotification } from "../reducers/notificationReducer";
 import { filterAnecdotes } from "../reducers/filterReducer";
-import { getAllService } from "../services/anecdotes";
-import { initializeAnecdotes } from "../reducers/anecdoteReducer";
 
 function AnecdoteList() {
   const dispatch = useDispatch();
@@ -21,14 +16,11 @@ function AnecdoteList() {
   });
 
   const vote = (id) => {
-    dispatch(voteAnecdote(id));
+    const anecdote = anecdotes.find((x) => x.id === id);
+    anecdote.votes = anecdote.votes + 1;
+    dispatch(voteAnecdote(id, anecdote));
 
-    const anecdote = anecdotes.find((x) => x.id === id).content;
-    dispatch(voteNotification(anecdote));
-
-    setTimeout(() => {
-      dispatch(resetNotification());
-    }, 5000);
+    dispatch(voteNotification(anecdote.content));
   };
 
   const filter = (e) => {
@@ -37,13 +29,7 @@ function AnecdoteList() {
   };
 
   useEffect(() => {
-    getAllService()
-    .then(anecdotes => {
-      dispatch(initializeAnecdotes(anecdotes.data))
-    })
-    .catch(err => {
-      console.error(err.message)
-    });
+    dispatch(initializeAnecdotes());
   }, [dispatch]);
 
   return (

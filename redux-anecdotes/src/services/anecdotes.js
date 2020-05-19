@@ -2,6 +2,8 @@ import axios from "axios";
 
 const url = "http://localhost:3001/anecdotes";
 
-export const getAllService = async () => axios.get(url);
+export const getAll = () => axios.get(url);
 
-export const createAnecdoteService = async (anecdote) => axios.post(url, anecdote);
+export const newAnecdote = (anecdote) => axios.post(url, anecdote);
+
+export const incrementVotes = (id, update) => axios.put(`${url}/${id}`, update);
