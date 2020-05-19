@@ -1,43 +1,32 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { voteAnecdote, initializeAnecdotes } from "../reducers/anecdoteReducer";
 import { voteNotification } from "../reducers/notificationReducer";
 import { filterAnecdotes } from "../reducers/filterReducer";
 
-function AnecdoteList() {
-  const dispatch = useDispatch();
-
-  const anecdotes = useSelector((state) => {
-    return state.filter === "ALL"
-      ? state.anecdotes
-      : state.anecdotes.filter(({ content }) =>
-          new RegExp(`${state.filter}`, "gi").test(content)
-        );
-  });
-
+function AnecdoteList(props) {
   const vote = (id) => {
-    const anecdote = anecdotes.find((x) => x.id === id);
+    const anecdote = props.anecdotes.find((x) => x.id === id);
     anecdote.votes = anecdote.votes + 1;
-    dispatch(voteAnecdote(id, anecdote));
-
-    dispatch(voteNotification(anecdote.content));
+    props.voteAnecdote(id, anecdote);
+    props.voteNotification(anecdote.content);
   };
 
   const filter = (e) => {
     e.preventDefault();
-    dispatch(filterAnecdotes(e.target.value));
+    props.filterAnecdotes(e.target.value);
   };
 
   useEffect(() => {
-    dispatch(initializeAnecdotes());
-  }, [dispatch]);
+    props.initializeAnecdotes();
+  }, []);
 
   return (
     <>
       <div>
         Filter: <input type="text" onChange={filter} />
       </div>
-      {anecdotes
+      {props.anecdotes
         .sort((x, y) => x > y)
         .map((anecdote) => (
           <div key={anecdote.id}>
@@ -52,4 +41,36 @@ function AnecdoteList() {
   );
 }
 
-export default AnecdoteList;
+//map redux state to component's props
+const mapStateToProps = ({ anecdotes, filter }) => {
+  if (filter === "ALL") {
+    return {
+      anecdotes,
+    };
+  }
+
+  return {
+    anecdotes: anecdotes.filter(({ content }) => new RegExp(`${filter}`, "gi").test(content))
+  }
+};
+
+//map redux action creators to component's event handlers
+const mapDispatchToProps = dispatch => {
+  return {
+    initializeAnecdotes: () => {
+      dispatch(initializeAnecdotes());
+    },
+    voteAnecdote: (id, update) => {
+      dispatch(voteAnecdote(id, update));
+    },
+    filterAnecdotes: term => {
+      dispatch(filterAnecdotes(term))
+    },
+    voteNotification: data => {
+      dispatch(voteNotification(data));
+    }
+  }
+}
+
+const ConnectedAnecdoteList = connect(mapStateToProps, mapDispatchToProps)(AnecdoteList);
+export default ConnectedAnecdoteList;

@@ -3,17 +3,17 @@
     {
       "content": "If it hurts, do it more often",
       "id": "47145",
-      "votes": 16
+      "votes": 132
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
       "id": "21149",
-      "votes": 1
+      "votes": 11
     },
     {
       "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
       "id": "69581",
-      "votes": 0
+      "votes": 3
     },
     {
       "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
@@ -28,7 +28,7 @@
     {
       "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
       "id": "98312",
-      "votes": 0
+      "votes": 8
     },
     {
       "content": "Hello, there",
@@ -48,16 +48,36 @@
     {
       "content": "Testing123",
       "id": 1589905379268,
-      "votes": 0
+      "votes": 3
     },
     {
       "content": "Hello from the other side",
       "id": 1589907530828,
-      "votes": 0
+      "votes": 1
     },
     {
       "content": "Hello from the other size",
       "id": 1589907587362,
+      "votes": 1
+    },
+    {
+      "content": "What if i say",
+      "id": 1589915701181,
+      "votes": 1
+    },
+    {
+      "content": "Okay, i'm getting the hang of this old connect thingy from redux",
+      "id": 1589915736332,
+      "votes": 44
+    },
+    {
+      "content": "one",
+      "id": 1589922596537,
+      "votes": 0
+    },
+    {
+      "content": "onse",
+      "id": 1589922600446,
       "votes": 0
     }
   ]

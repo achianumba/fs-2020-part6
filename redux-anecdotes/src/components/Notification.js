@@ -11,7 +11,7 @@ const Notification = () => {
   };
 
   return (
-    <>{notification === "" ? "" : <div style={style}>{notification}</div>}</>
+    <>{notification.message === "" ? "" : <div style={style}>{notification.message}</div>}</>
   );
 };
 
