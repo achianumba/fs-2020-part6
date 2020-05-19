@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  margin: 0;
+  padding: 8px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#question {
+  text-align: center;
+  margin: 40px 0;
+  padding: 0 8px;
+}
+
+#btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.btn {
+  flex: 1 0 25%;
+  max-width: 300px;
+  margin: 16px;
+  font-size: 1.3em;
+  color: #ffffff;
+  outline: none;
+  padding: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+.btn-good {
+  background-color: #03a803;
+}
+
+.btn-neutral {
+  background-color: #1e90ff;
+}
+
+.btn-bad {
+  background-color: #555555;
+}
+
+.btn-good:hover {
+  color: #000000;
+  background-color: transparent;
+  border: 2px solid #03a803;
+}
+
+.btn-neutral:hover {
+  color: #000000;
+  background-color: transparent;
+  border: 2px solid #1e90ff;
+}
+
+.btn-bad:hover {
+  color: #000000;
+  background-color: transparent;
+  border: 2px solid #555555;
+}
+
+.hide {
+  display: none;
+}
+
+.no-feedback {
+  margin: 40px 0;
+}
+
+.no-feedback > h2, .no-feedback > p {
+  text-align: center;
+}
+
+.no-feedback > p {
+  font-size: 1.2em;
+}
+
+.statistics {
+  max-width: 100%;
+  margin: 40px auto;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 16px;
+  border-collapse: collapse;
+}
+
+.statistics > caption {
+  font-size: 2.0em;
+  padding-bottom: 24px;
+}
+
+td {
+  border: 1px solid #cccccc;
+  font-size: 1.3em;
+  padding: 8px 24px;
+}
+
+
+@media screen and (max-width: 768px) {
+  #question, #btn-container, .statistics {
+    margin: 16px auto;
+  }
+
+  .btn {
+    margin: 8px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  #btn-container {
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
+  .statistics > caption {
+    font-size: 2em;
+    padding-bottom: 16px;
+  }
+}
